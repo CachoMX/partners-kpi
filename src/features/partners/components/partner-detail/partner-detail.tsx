@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -17,6 +17,7 @@ import {
 import { useGetPartner } from '../../api/get-partner';
 import { useDeletePartner } from '../../api/delete-partner';
 import { useLeads } from '@/features/leads/api/get-leads';
+import { PartnerLeadsFilters } from '../partner-leads-filters/partner-leads-filters';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
@@ -26,9 +27,52 @@ export function PartnerDetail() {
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Filter states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [directionFilter, setDirectionFilter] = useState('all');
+  const [dateFromFilter, setDateFromFilter] = useState('');
+  const [dateToFilter, setDateToFilter] = useState('');
+
   const { data: partner, isLoading, error } = useGetPartner(partnerId);
   const { data: relatedLeads, isLoading: leadsLoading } = useLeads({ partner_id: partnerId });
   const deletePartnerMutation = useDeletePartner();
+
+  // Filter leads based on filters
+  const filteredLeads = useMemo(() => {
+    if (!relatedLeads) return [];
+
+    return relatedLeads.filter((lead) => {
+      // Search filter
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const matchesName = lead.lead_name.toLowerCase().includes(query);
+        const matchesCompany = lead.lead_company?.toLowerCase().includes(query);
+        if (!matchesName && !matchesCompany) return false;
+      }
+
+      // Status filter
+      if (statusFilter !== 'all' && lead.status !== statusFilter) {
+        return false;
+      }
+
+      // Direction filter
+      if (directionFilter !== 'all' && lead.direction !== directionFilter) {
+        return false;
+      }
+
+      // Date range filter
+      if (dateFromFilter && lead.intro_date < dateFromFilter) {
+        return false;
+      }
+
+      if (dateToFilter && lead.intro_date > dateToFilter) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [relatedLeads, searchQuery, statusFilter, directionFilter, dateFromFilter, dateToFilter]);
 
   const handleDelete = async () => {
     if (!partner) return;
@@ -219,7 +263,7 @@ export function PartnerDetail() {
             Related Intros & Leads
             {relatedLeads && relatedLeads.length > 0 && (
               <span className="text-small ml-2" style={{ color: 'var(--color-text-secondary)', fontWeight: 'normal' }}>
-                ({relatedLeads.length} {relatedLeads.length === 1 ? 'intro' : 'intros'})
+                ({filteredLeads.length} of {relatedLeads.length} {relatedLeads.length === 1 ? 'intro' : 'intros'})
               </span>
             )}
           </h2>
@@ -232,13 +276,29 @@ export function PartnerDetail() {
           </Button>
         </div>
 
+        {/* Filters */}
+        {relatedLeads && relatedLeads.length > 0 && (
+          <PartnerLeadsFilters
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            statusFilter={statusFilter}
+            onStatusChange={setStatusFilter}
+            directionFilter={directionFilter}
+            onDirectionChange={setDirectionFilter}
+            dateFromFilter={dateFromFilter}
+            onDateFromChange={setDateFromFilter}
+            dateToFilter={dateToFilter}
+            onDateToChange={setDateToFilter}
+          />
+        )}
+
         {leadsLoading ? (
           <div className="text-center" style={{ padding: 'var(--space-6)' }}>
             <p style={{ color: 'var(--color-text-secondary)' }}>Loading leads...</p>
           </div>
-        ) : relatedLeads && relatedLeads.length > 0 ? (
+        ) : filteredLeads.length > 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-            {relatedLeads.map((lead) => (
+            {filteredLeads.map((lead) => (
               <Link
                 key={lead.id}
                 to={`/leads/${lead.id}`}
@@ -308,6 +368,18 @@ export function PartnerDetail() {
                 </div>
               </Link>
             ))}
+          </div>
+        ) : relatedLeads && relatedLeads.length > 0 ? (
+          <div
+            className="alert alert-info"
+            style={{
+              textAlign: 'center',
+              padding: 'var(--space-6)',
+            }}
+          >
+            <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
+              No intros match your current filters. Try adjusting your search or filters.
+            </p>
           </div>
         ) : (
           <div
