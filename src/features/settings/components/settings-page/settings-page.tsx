@@ -21,7 +21,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { UserProfile } from '../user-profile/user-profile';
+import { ProfileForm } from '../profile-form/profile-form';
+import { AccountSettings } from '../account-settings/account-settings';
 import { LeadStatusSettings } from '../lead-status-settings/lead-status-settings';
 import { DEFAULT_LEAD_STATUSES } from '../../utils/lead-statuses';
 import type { DataStats } from '../../types/settings.types';
@@ -136,8 +137,20 @@ export function SettingsPage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
         {/* User Profile Section */}
         <div className="card">
-          <h2 className="text-h2 mb-4">User Profile</h2>
-          <UserProfile />
+          <h2 className="text-h2 mb-4">Profile Information</h2>
+          <p className="text-small mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+            Update your personal and business information
+          </p>
+          <ProfileForm />
+        </div>
+
+        {/* Account Settings Section */}
+        <div className="card">
+          <h2 className="text-h2 mb-4">Account Settings</h2>
+          <p className="text-small mb-4" style={{ color: 'var(--color-text-secondary)' }}>
+            Manage your email, password, and account security
+          </p>
+          <AccountSettings />
         </div>
 
         {/* Application Preferences Section */}

@@ -165,6 +165,56 @@ export interface Database {
           updated_at?: string;
         };
       };
+      profiles: {
+        Row: {
+          id: string;
+          full_name: string | null;
+          business_name: string | null;
+          phone: string | null;
+          address: string | null;
+          city: string | null;
+          state: string | null;
+          zip_code: string | null;
+          country: string | null;
+          avatar_url: string | null;
+          bio: string | null;
+          website: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          full_name?: string | null;
+          business_name?: string | null;
+          phone?: string | null;
+          address?: string | null;
+          city?: string | null;
+          state?: string | null;
+          zip_code?: string | null;
+          country?: string | null;
+          avatar_url?: string | null;
+          bio?: string | null;
+          website?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string | null;
+          business_name?: string | null;
+          phone?: string | null;
+          address?: string | null;
+          city?: string | null;
+          state?: string | null;
+          zip_code?: string | null;
+          country?: string | null;
+          avatar_url?: string | null;
+          bio?: string | null;
+          website?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
     Views: {
       [_ in never]: never;
