@@ -1,0 +1,56 @@
+IMPORT/EXPORT FEATURE - COMPLETE FILE TREE
+==========================================
+
+C:\Projects\zach-vieth-kpi\
+├── sample-data/
+│   ├── sample-partners.csv          # Sample partners for testing
+│   └── sample-leads.csv             # Sample leads for testing
+│
+├── src/
+│   ├── features/
+│   │   └── import-export/           # ✨ NEW FEATURE MODULE
+│   │       ├── components/
+│   │       │   ├── csv-import/
+│   │       │   │   └── csv-import.tsx         # Import component (328 lines)
+│   │       │   ├── csv-export/
+│   │       │   │   └── csv-export.tsx         # Export component (90 lines)
+│   │       │   └── import-export-page/
+│   │       │       └── import-export-page.tsx # Main page (164 lines)
+│   │       ├── utils/
+│   │       │   ├── csv-parser.ts              # Parse & validate CSV (160 lines)
+│   │       │   └── csv-generator.ts           # Generate CSV files (150 lines)
+│   │       ├── types/
+│   │       │   └── import-export.types.ts     # TypeScript types (40 lines)
+│   │       ├── index.ts                       # Public API exports
+│   │       └── README.md                      # Feature documentation
+│   │
+│   └── app/
+│       └── router.tsx                         # ✏️ UPDATED: Added route
+│
+├── package.json                               # ✏️ UPDATED: Added papaparse
+├── IMPORT-EXPORT-FEATURE.md                   # Implementation summary
+└── import-export-tree.txt                     # This file
+
+STATISTICS
+==========
+Total New Files: 8 feature files + 2 sample CSVs + 2 docs = 12 files
+Lines of Code: ~1,000+ lines of TypeScript/React
+Dependencies Added: papaparse, @types/papaparse
+Route: /import-export
+
+FEATURES
+========
+✅ CSV Import for Partners (with validation)
+✅ CSV Import for Leads (with auto partner creation)
+✅ CSV Export for Partners
+✅ CSV Export for Leads (with partner info)
+✅ Sample CSV generators
+✅ Preview tables
+✅ Error handling & validation
+✅ Progress indicators
+✅ Toast notifications
+✅ Theme integration
+✅ TypeScript type safety
+✅ Bulletproof React architecture
+
+READY FOR PRODUCTION ✨

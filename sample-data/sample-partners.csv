@@ -1,0 +1,6 @@
+company_name,contact_name,email,phone,services,website,location,notes
+Acme Corporation,John Doe,john@acme.com,555-1234,"Software Development, Consulting",https://acme.com,"New York, NY",Great partner for enterprise clients
+Tech Solutions Inc,Jane Smith,jane@techsolutions.com,555-5678,"IT Services, Cloud Solutions",https://techsolutions.com,"San Francisco, CA",Specializes in cloud migrations
+Digital Dynamics,Bob Johnson,bob@digitaldynamics.com,555-9012,"Web Development, UX Design",https://digitaldynamics.com,"Austin, TX",Creative agency with strong portfolio
+CloudFirst Partners,Sarah Williams,sarah@cloudfirst.com,555-3456,"Cloud Infrastructure, DevOps",https://cloudfirst.com,"Seattle, WA",AWS and Azure certified
+Data Insights LLC,Michael Brown,michael@datainsights.com,555-7890,"Data Analytics, BI Solutions",https://datainsights.com,"Boston, MA",Excellent data visualization work

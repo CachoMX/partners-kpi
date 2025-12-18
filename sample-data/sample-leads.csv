@@ -1,0 +1,9 @@
+partner_company_name,lead_name,lead_company,direction,status,intro_date,contact_info,communication_method,notes
+Acme Corporation,Alice Johnson,Johnson Enterprises,made,Engaged,2024-01-15,alice@johnsonent.com,Email,Interested in consulting services
+Tech Solutions Inc,Bob Williams,Williams Corp,received,Booked Call,2024-01-20,bob@williamscorp.com,Phone,Looking for IT support
+Digital Dynamics,Carol Davis,Davis Design Studio,made,Proposal Sent,2024-01-25,carol@davisdesign.com,Email,Website redesign project
+CloudFirst Partners,David Miller,Miller Manufacturing,made,Engaged,2024-02-01,david@millermfg.com,LinkedIn,Cloud migration inquiry
+Data Insights LLC,Emma Wilson,Wilson Analytics,received,Closed,2024-02-05,emma@wilsonanalytics.com,Email,Successfully closed BI implementation
+Acme Corporation,Frank Thomas,Thomas Tech,made,Booked Call,2024-02-10,frank@thomastech.com,Phone,Software development project
+Tech Solutions Inc,Grace Lee,Lee Logistics,received,Engaged,2024-02-15,grace@leelog.com,Email,IT infrastructure upgrade
+Digital Dynamics,Henry Clark,Clark Consulting,made,Engaged,2024-02-20,henry@clarkconsult.com,LinkedIn,Brand refresh project
